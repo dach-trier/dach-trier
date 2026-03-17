@@ -1,0 +1,85 @@
+@use "_variables.scss" as *;
+
+* {
+    margin: 0;
+    padding: 0;
+
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 16px;
+}
+
+.block {
+    width: calc(100vw - 42px);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+//
+// <button>
+//     ...
+// </button>
+//
+
+.button {
+    $depth: 4px;
+    $resistance: 3px;
+
+    position: relative;
+
+    outline: none;
+    border: none;
+    border-radius: 4px;
+
+    cursor: pointer;
+    user-select: none;
+    // prettier-ignore
+    label { cursor: pointer; }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: $depth;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        border-radius: 4px;
+    }
+
+    &:active {
+        top: $depth - $resistance;
+        // prettier-ignore
+        &::after { height: calc(100% - $depth + $resistance); }
+    }
+
+    // the ::after pseudo-element extends 4px beyond the container.
+    // adding a bottom margin prevents surrounding elements from overlapping it.
+    margin-bottom: $depth;
+}
+
+.button-red {
+    background-color: $color-red-600;
+    // prettier-ignore
+    &::after { background-color: $color-red-700; }
+
+    &:hover {
+        background-color: $color-red-700;
+        // prettier-ignore
+        &::after { background-color: $color-red-800; }
+    }
+}
+
+.button-blue {
+    background-color: $color-blue-600;
+    // prettier-ignore
+    &::after { background-color: $color-blue-700; }
+
+    &:hover {
+        background-color: $color-blue-700;
+        // prettier-ignore
+        &::after { background-color: $color-blue-800; }
+    }
+}
