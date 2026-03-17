@@ -14,7 +14,7 @@ func main() {
 			EntryPoints: []string{},
 			Bundle:      true,
 			Write:       true,
-			Outdir:      "web/js",
+			Outdir:      "static",
 		},
 	)
 
