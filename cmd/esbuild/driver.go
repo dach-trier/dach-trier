@@ -12,6 +12,7 @@ func main() {
 	res := esbuild.Build(
 		esbuild.BuildOptions{
 			EntryPoints: []string{"./client/index.ts"},
+			TreeShaking: esbuild.TreeShakingTrue,
 			Bundle:      true,
 			Write:       true,
 			Outdir:      "static",
