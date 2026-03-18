@@ -18,9 +18,59 @@
 }
 
 //
-// <button>
-//     ...
-// </button>
+// button-group
+//
+
+.button-group {
+    display: inline-flex;
+
+    > * {
+        @extend .button;
+    }
+}
+
+.button-group-rounded {
+    > :first-child {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+
+        &::after {
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
+    }
+
+    > :last-child {
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+
+        &::after {
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+    }
+}
+
+.button-group-white {
+    > * {
+        @extend .button-white;
+    }
+}
+
+.button-group-red {
+    > * {
+        @extend .button-red;
+    }
+}
+
+.button-group-blue {
+    > * {
+        @extend .button-blue;
+    }
+}
+
+//
+// button
 //
 
 .button {
@@ -28,10 +78,10 @@
     $resistance: 3px;
 
     position: relative;
+    transform-style: preserve-3d;
 
     outline: none;
     border: none;
-    border-radius: 4px;
 
     cursor: pointer;
     user-select: none;
@@ -45,8 +95,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        z-index: -1;
-        border-radius: 4px;
+        transform: translateZ(-1px);
     }
 
     &:active {
@@ -58,6 +107,26 @@
     // the ::after pseudo-element extends 4px beyond the container.
     // adding a bottom margin prevents surrounding elements from overlapping it.
     margin-bottom: $depth;
+}
+
+.button-rounded {
+    border-radius: 4px;
+
+    &::after {
+        border-radius: 4px;
+    }
+}
+
+.button-white {
+    background-color: #fff;
+    // prettier-ignore
+    &::after { background-color: $color-gray-200; }
+
+    body.hasHover &:hover {
+        background-color: $color-gray-200;
+        // prettier-ignore
+        &::after { background-color: $color-gray-300; }
+    }
 }
 
 .button-red {
