@@ -29,39 +29,111 @@
             -->
         </header>
 
-        <main class="block">
-            <section class="hero">
-                <img class="hero__logo" src="static/images/dach-logo.svg">
+        <main class="main">
+            <section class="hero block">
+                <div class="banner">
+                    <img
+                        class="banner__logo"
+                        src="static/images/dach-logo.svg"
+                    >
 
-                <h1 class="hero__heading">
-                    DACH e.V. Trier
-                </h1>
+                    <h1 class="banner__heading">
+                        DACH e.V. Trier
+                    </h1>
 
-                <p class="hero__slogan">
-                    Культурний простір об'єднання та інтеграції зростаючого
-                    покоління
-                </p>
+                    <p class="banner__slogan">
+                        Культурний простір об'єднання та інтеграції зростаючого
+                        покоління
+                    </p>
 
-                <div class="hero__controls">
-                    <button class="hero__button button button-blue">
-                        <svg class="hero__button__icon hero__contact__button__icon">
-                            <use xlink:href="static/icons.svg#phone" />
-                        </svg>
+                    <div class="banner__button__container">
+                        <button class="banner__button button button-blue button-rounded">
+                            <svg class="banner__button__icon banner__contact__button__icon">
+                                <use xlink:href="static/icons.svg#phone" />
+                            </svg>
 
-                        <label class="hero__button__label hero__contact__button__label">
-                            Contact
-                        </label>
-                    </button>
+                            <label class="banner__button__label banner__contact__button__label">
+                                Contact
+                            </label>
+                        </button>
 
-                    <button class="hero__button button button-red">
-                        <svg class="hero__button__icon hero__donate__button__icon">
-                            <use xlink:href="static/icons.svg#heart" />
-                        </svg>
+                        <button class="banner__button button button-red button-rounded">
+                            <svg class="banner__button__icon banner__donate__button__icon">
+                                <use xlink:href="static/icons.svg#heart" />
+                            </svg>
 
-                        <label class="hero__button__label">
-                            Donate
-                        </label>
-                    </button>
+                            <label class="banner__button__label">
+                                Donate
+                            </label>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="archive__carousel">
+                    <div class="archive__carousel__slide__stack">
+                        <div class="archive__carousel__slide archive__carousel__slide--active">
+                            <img class="archive__carousel__slide__background" src="static/images/walzer.jpg" />
+                            <h1  class="archive__carousel__slide__heading">Walzer</h1>
+                        </div>
+
+                        <div class="archive__carousel__slide">
+                            <img class="archive__carousel__slide__background" src="static/images/art.jpg" />
+                            <h1  class="archive__carousel__slide__heading">Art</h1>
+                        </div>
+
+                        <div class="archive__carousel__slide">
+                            <img class="archive__carousel__slide__background" src="static/images/theater.jpg" />
+                            <h1  class="archive__carousel__slide__heading">Theater</h1>
+                        </div>
+
+                        <div class="archive__carousel__slide">
+                            <img class="archive__carousel__slide__background" src="static/images/gala.jpg" />
+                            <h1  class="archive__carousel__slide__heading">Gala</h1>
+                        </div>
+
+                        <div class="archive__carousel__slide">
+                            <img class="archive__carousel__slide__background" src="static/images/krzyzowa.jpg" />
+                            <h1  class="archive__carousel__slide__heading">Krzyzowa</h1>
+                        </div>
+
+                        <div class="archive__carousel__slide">
+                            <img class="archive__carousel__slide__background" src="static/images/band.jpg" />
+                            <h1  class="archive__carousel__slide__heading">Band</h1>
+                        </div>
+
+                        <div class="archive__carousel__slide">
+                            <img class="archive__carousel__slide__background" src="static/images/camp.jpg" />
+                            <h1  class="archive__carousel__slide__heading">Camp</h1>
+                        </div>
+
+                        <div class="archive__carousel__slide">
+                            <img class="archive__carousel__slide__background" src="static/images/bereginja.jpg" />
+                            <h1  class="archive__carousel__slide__heading">Bereginja</h1>
+                        </div>
+                    </div>
+
+                    <div class="archive__carousel__control__group button-group button-group-white button-group-rounded">
+                        <button class="archive__carousel__control archive__carousel__control__prev">
+                            <svg class="archive__carousel__control__icon">
+                                <use xlink:href="static/icons.svg#left-arrow" />
+                            </svg>
+                        </button>
+                        <button class="archive__carousel__control">
+                            <svg class="archive__carousel__control__icon archive__carousel__control__next">
+                                <use xlink:href="static/icons.svg#right-arrow" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="archive__carousel__timer__container">
+                        <span class="archive__carousel__timer__bar">
+                            <span class="archive__carousel__timer"></span>
+                        </span>
+                    </div>
+
+                    <script>
+                        ArchiveCarousel(me())
+                    </script>
                 </div>
             </section>
         </main>
