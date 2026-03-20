@@ -1,0 +1,5 @@
+@mixin page-container {
+    width: calc(100vw - 42px);
+    max-width: 1200px;
+    margin: 0 auto;
+}

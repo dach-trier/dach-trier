@@ -1,0 +1,317 @@
+@use "../_prelude.scss" as *;
+
+.footer {
+    @include page-container;
+
+    &::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: black;
+    }
+
+    @include break(xxs) {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        display: flex;
+
+        gap: 20px;
+    }
+
+    @include break(md) {
+        flex-direction: initial;
+        justify-content: initial;
+        align-items: initial;
+
+        display: grid;
+        grid-template-columns: repeat(4, auto);
+        grid-template-rows: repeat(5, auto);
+
+        gap: initial;
+        row-gap: 20px;
+        column-gap: 40px;
+
+        &::before {
+            grid-column: span 4;
+        }
+    }
+
+    @include break(xl) {
+        flex-direction: initial;
+        justify-content: initial;
+        align-items: initial;
+
+        display: grid;
+        grid-template-columns: max-content repeat(4, auto);
+        grid-template-rows: repeat(4, auto);
+
+        gap: initial;
+        row-gap: 20px;
+        column-gap: 80px;
+
+        &::before {
+            grid-column: span 5;
+        }
+    }
+
+}
+
+.footer__heading {
+    font-weight: 600;
+
+    @include break(xxs) {
+        align-self: start;
+        margin-top: 20px;
+    }
+
+    @include break(md) {
+        align-self: center;
+        margin-top: 20px;
+    }
+
+    @include break(xl) {
+        align-self: center;
+        margin-top: 0;
+    }
+}
+
+/**
+ * footer:block
+ */
+
+.footer__block {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.footer__block__item {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.footer__block__item__icon {
+    width: 16px;
+    height: 16px;
+}
+
+.footer__block__item__label {
+    color: black;
+}
+
+/**
+ * footer organization
+ */
+
+.footer__organization {
+    display: flex;
+
+    @include break(xxs) {
+        flex-direction: row;
+        align-items: center;
+        align-self: start;
+    }
+
+    @include break(md) {
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: start;
+
+        grid-row: 2;
+        grid-column: 1 / span 4;
+    }
+
+    @include break(xl) {
+        flex-direction: row;
+        align-items: center;
+        align-self: center;
+
+        grid-row: 2;
+        grid-column: 1;
+    }
+
+    gap: 12px;
+}
+
+.footer__organization__logo {
+    aspect-ratio: square;
+    width: 32px;
+}
+
+.footer__organization__name {
+    font-weight: 600;
+}
+
+/**
+ * footer:contact
+ */
+
+.footer__contact__heading {
+    @include break(md) {
+        grid-row: 3;
+        grid-column: 1;
+    }
+
+    @include break(xl) {
+        grid-row: 2;
+        grid-column: 2;
+    }
+}
+
+.footer__contact__block {
+    @include break(md) {
+        grid-row: 4;
+        grid-column: 1;
+    }
+
+    @include break(xl) {
+        grid-row: 3;
+        grid-column: 2;
+    }
+}
+
+.footer__contact__block__item__icon {
+    fill: none;
+    stroke: black;
+    stroke-width: 2;
+}
+
+/**
+ * footer:social
+ */
+
+.footer__social__heading {
+    @include break(md) {
+        grid-row: 3;
+        grid-column: 2;
+    }
+
+    @include break(xl) {
+        grid-row: 2;
+        grid-column: 3;
+    }
+}
+
+.footer__social__block {
+    @include break(md) {
+        grid-row: 4;
+        grid-column: 2;
+    }
+
+    @include break(xl) {
+        grid-row: 3;
+        grid-column: 3;
+    }
+}
+
+
+/**
+ * footer:legal
+ */
+
+.footer__legal__heading {
+    @include break(md) {
+        grid-row: 3;
+        grid-column: 3;
+    }
+
+    @include break(xl) {
+        grid-row: 2;
+        grid-column: 4;
+    }
+}
+
+.footer__legal__block {
+    @include break(md) {
+        grid-row: 4;
+        grid-column: 3;
+    }
+
+    @include break(xl) {
+        grid-row: 3;
+        grid-column: 4;
+    }
+}
+
+.footer__legal__block__item__document__icon {
+    stroke: black;
+    fill: none;
+}
+
+/**
+ * footer:maintenance
+ */
+
+.footer__maintenance__heading {
+    @include break(md) {
+        grid-row: 3;
+        grid-column: 4;
+    }
+
+    @include break(xl) {
+        grid-row: 2;
+        grid-column: 5;
+    }
+}
+
+.footer__maintenance__block {
+    @include break(md) {
+        grid-row: 4;
+        grid-column: 4;
+    }
+
+    @include break(xl) {
+        grid-row: 3;
+        grid-column: 5;
+    }
+}
+
+.footer__maintenance__block__item__at__icon {
+    stroke: black;
+}
+
+.footer__maintenance__block__item__mail__icon {
+    fill: none;
+    stroke: black;
+    stroke-width: 2;
+}
+
+.footer__maintenance__block__item__issues__icon {
+    fill: none;
+    stroke: black;
+    stroke-width: 2;
+}
+
+.footer__maintenance__block__item__code__icon {
+    fill: black;
+    stroke: none;
+}
+
+/**
+ * footer:copyright
+ */
+
+.footer__copyright {
+    line-height: 24px;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include break(md) {
+        grid-row: 5;
+        grid-column: 1 / span 4;
+    }
+
+    @include break(xl) {
+        grid-row: 4;
+        grid-column: 1/ span 5;
+    }
+}

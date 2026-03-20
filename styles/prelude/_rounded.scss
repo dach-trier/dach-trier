@@ -1,0 +1,5 @@
+@use "_variables.scss" as *;
+
+@mixin rounded {
+    border-radius: $border-radius;
+}

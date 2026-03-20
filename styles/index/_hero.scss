@@ -1,0 +1,19 @@
+@use "../_prelude.scss" as *;
+
+.hero {
+    @include page-container;
+
+    display: flex;
+    gap: 80px;
+
+    @include break(xxs) {
+        flex-direction: column;
+    }
+
+    @include break(md) {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: stretch;
+        gap: 40px;
+    }
+}
