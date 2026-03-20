@@ -1,3 +1,4 @@
+@use "sass:map";
 @use "_variables.scss" as *;
 
 //
@@ -16,8 +17,8 @@ $_breakpoints: (
     @if $breakpoint == xxs {
         @content;
     }
-    @else if map-has-key($_breakpoints, $breakpoint) {
-        $min-width: map-get($_breakpoints, $breakpoint);
+    @else if map.has-key($_breakpoints, $breakpoint) {
+        $min-width: map.get($_breakpoints, $breakpoint);
         @media screen and (min-width: $min-width) {
             @content;
         }
