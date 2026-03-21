@@ -1,0 +1,29 @@
+@mixin container {
+    width: calc(100% - 42px);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@mixin absolute-container {
+    position: absolute;
+    width: calc(100% - 42px);
+    max-width: 1200px;
+
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@mixin page-container {
+    width: calc(100vw - 42px);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@mixin absolute-page-container {
+    position: absolute;
+    width: calc(100vw - 42px);
+    max-width: 1200px;
+
+    left: 50%;
+    transform: translateX(-50%);
+}
