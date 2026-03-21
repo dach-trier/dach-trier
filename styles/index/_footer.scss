@@ -1,5 +1,9 @@
 @use "../_prelude.scss" as *;
 
+.footer {
+    margin-top: 80px;
+}
+
 .footer__container {
     @include page-container;
 
