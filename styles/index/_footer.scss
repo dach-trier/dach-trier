@@ -1,6 +1,6 @@
 @use "../_prelude.scss" as *;
 
-.footer {
+.footer__container {
     @include page-container;
 
     &::before {
