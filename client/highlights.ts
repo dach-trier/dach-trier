@@ -69,6 +69,5 @@ function Parallax(element: HTMLElement) {
         );
 
         element.style.transform = `scale(${1 + progress * 0.1})`;
-        console.log(element.style.top);
     });
 }
