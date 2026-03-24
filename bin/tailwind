@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+set -e
+
+BIN_DIR="$(dirname "$0")/.tailwind"
+mkdir -p $BIN_DIR
+
+OS="$(uname | tr '[:upper:]' '[:lower:]')"
+ARCH="$(uname -m)"
+
+if [[ "$ARCH" == "x86_64" ]]; then
+    ARCH_FILE="x64"
+elif [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
+    ARCH_FILE="arm64"
+else
+    echo "unsupported architecture: $ARCH"
+    exit 1
+fi
+
+if [[ "$OS" == "linux" ]]; then
+    FILE="tailwindcss-linux-$ARCH_FILE"
+elif [[ "$OS" == "darwin" ]]; then
+    FILE="tailwindcss-macos-$ARCH_FILE"
+else
+    echo "unsupported OS: $OS"
+    exit 1
+fi
+
+TARGET="$BIN_DIR/tailwindcss"
+
+if [ ! -f "$TARGET" ]; then
+    echo "tailwind not found, downloading ..."
+    URL="https://github.com/tailwindlabs/tailwindcss/releases/download/v4.2.2/$FILE"
+    curl -L "$URL" -o "$TARGET"
+    chmod +x "$TARGET"
+    echo "downloaded standalone tailwind cli to $TARGET"
+fi
+
+"$TARGET" "$@"

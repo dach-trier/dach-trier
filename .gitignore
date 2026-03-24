@@ -1,4 +1,5 @@
 node_modules/
+bin/.tailwind
 
 static/*.css
 static/*.css.map
