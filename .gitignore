@@ -5,7 +5,7 @@ static/*.css
 static/*.css.map
 static/*.js
 
-static/styles/bundle.css
+web/assets/styles/bundle.css
 
 # vendor folder is used for local backups just in case.
 # no need to flood the remote repo.
