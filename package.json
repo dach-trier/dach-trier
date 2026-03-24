@@ -1,7 +1,0 @@
-{
-    "name": "github.com/dach-trier/homepage",
-    "private": true,
-    "dependencies": {
-        "typescript": "^5.9.3"
-    }
-}

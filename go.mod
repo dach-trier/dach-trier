@@ -2,10 +2,7 @@ module github.com/dach-trier/homepage
 
 go 1.26.1
 
-require (
-	github.com/evanw/esbuild v0.27.4
-	github.com/go-chi/chi/v5 v5.2.5
-)
+require github.com/go-chi/chi/v5 v5.2.5
 
 require (
 	github.com/a-h/parse v0.0.0-20250122154542-74294addb73e // indirect
