@@ -1,9 +1,4 @@
-node_modules/
 bin/.tailwind
-
-static/*.css
-static/*.css.map
-static/*.js
 
 web/assets/styles/bundle.css
 
