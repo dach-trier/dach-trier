@@ -1,0 +1,30 @@
+@import "tailwindcss";
+@import "./components/button.css";
+@import "./components/button-group.css";
+
+/* prettier-ignore */
+
+@theme {
+    /**
+     * variables used for button and button-group utilities
+     * (see components/button.css and components/button-group.css)
+     */
+
+    --idle-button-fg-white:    var(--color-black);
+    --idle-button-bg-white:    var(--color-white);
+    --idle-button-sh-white:    var(--color-gray-200);
+    --hovr-button-bg-white:    var(--color-gray-200);
+    --hovr-button-sh-white:    var(--color-gray-300);
+
+    --idle-button-fg-red-600:  var(--color-white);
+    --idle-button-bg-red-600:  var(--color-red-600);
+    --idle-button-sh-red-600:  var(--color-red-700);
+    --hovr-button-bg-red-600:  var(--color-red-700);
+    --hovr-button-sh-red-600:  var(--color-red-800);
+
+    --idle-button-fg-blue-600: var(--color-white);
+    --idle-button-bg-blue-600: var(--color-blue-600);
+    --idle-button-sh-blue-600: var(--color-blue-700);
+    --hovr-button-bg-blue-600: var(--color-blue-700);
+    --hovr-button-sh-blue-600: var(--color-blue-800);
+}
