@@ -1,0 +1,364 @@
+{{define "page"}}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>DACH e.V. Trier</title>
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="assets/styles/bundle.css" />
+    </head>
+    <body>
+        <header class="sticky! z-10 top-0! float-left w-screen h-[58px] bg-white">
+            <div class="page-container h-full flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <img class="w-8" src="assets/graphics/dach-flat.svg" />
+                    <strong>DACH e.V. Trier</strong>
+                </div>
+            </div>
+        </header>
+
+        <section class="overflow-hidden relative w-full h-[250px] sm:page-container sm:rounded xl:h-[400px]">
+            <div class="w-full h-full" id="highlight__image__container">
+                <!-- must be in the same order as captions (see below) -->
+
+                {{$highlightImage := "absolute -z-1 w-full h-full object-cover transition-opacity duration-500 data-[state=inactive]:opacity-0 data-[state=active]:opacity-100"}}
+
+                <img class="{{$highlightImage}}" data-state="active"   src="assets/images/walzer.jpg" />
+                <img class="{{$highlightImage}}" data-state="inactive" src="assets/images/art.jpg" />
+                <img class="{{$highlightImage}}" data-state="inactive" src="assets/images/theater.jpg" />
+                <img class="{{$highlightImage}}" data-state="inactive" src="assets/images/gala.jpg" />
+                <img class="{{$highlightImage}}" data-state="inactive" src="assets/images/krzyzowa.jpg" />
+                <img class="{{$highlightImage}}" data-state="inactive" src="assets/images/band.jpg" />
+                <img class="{{$highlightImage}}" data-state="inactive" src="assets/images/camp.jpg" />
+                <img class="{{$highlightImage}}" data-state="inactive" src="assets/images/bereginja.jpg" />
+            </div>
+
+            <div class="absolute-container bottom-6 grid grid-rows-2 grid-cols-2">
+                <div class="relative row-2 col-1 self-end">
+                    <!-- must be in the same order as images (see above) -->
+
+                    {{$highlightLabel := "absolute bottom-0 text-white text-shadow-xs text-2xl transition-opacity duration-500 data-[state=inactive]:opacity-0 data-[state=active]:opacity-100"}}
+
+                    <strong class="{{$highlightLabel}}" data-state="active">Walzer</strong>
+                    <strong class="{{$highlightLabel}}" data-state="inactive">Art</strong>
+                    <strong class="{{$highlightLabel}}" data-state="inactive">Theater</strong>
+                    <strong class="{{$highlightLabel}}" data-state="inactive">Gala Konzert</strong>
+                    <strong class="{{$highlightLabel}}" data-state="inactive">Krzuzowa</strong>
+                    <strong class="{{$highlightLabel}}" data-state="inactive">Band</strong>
+                    <strong class="{{$highlightLabel}}" data-state="inactive">Camp</strong>
+                    <strong class="{{$highlightLabel}}" data-state="inactive">Bereginja</strong>
+                </div>
+            </div>
+
+            <!-- Slideshow -->
+            <script>
+                (() => {
+                    const DURATION = 5000;
+
+                    let active_image = document.currentScript.parentNode.querySelector("img[data-state='active']");
+                    let active_label = document.currentScript.parentNode.querySelector("strong[data-state='active']");
+                    let timeout;
+
+                    function getFirstChild(element) {
+                        return element.children[0];
+                    }
+
+                    function getNextSibling(element) {
+                        if (element.nextElementSibling)
+                            return element.nextElementSibling;
+
+                        return getFirstChild(element.parentElement);
+                    }
+
+                    function selectNextSibling() {
+                        clearTimeout(timeout);
+
+                        active_image.dataset["state"] = "inactive";
+                        active_label.dataset["state"] = "inactive";
+
+                        const previous_image = getNextSibling(active_image);
+                        const previous_label = getNextSibling(active_label);
+
+                        active_image = previous_image;
+                        active_image.dataset["state"] = "active";
+                        active_label = previous_label;
+                        active_label.dataset["state"] = "active";
+
+                        setTimeout(selectNextSibling, DURATION);
+                    }
+
+                    setTimeout(selectNextSibling, DURATION);
+                })()
+            </script>
+
+            <!-- Parallax Effect -->
+            <script>
+                (() => {
+                    const element = document.currentScript.parentNode.querySelector("#highlight__image__container");
+
+                    window.addEventListener("scroll", function () {
+                        const progress = Math.min(1, window.scrollY / element.clientHeight);
+
+                        element.style.transform = `scale(${1 + progress * 0.1})`;
+                    });
+                })()
+            </script>
+        </section>
+
+        <main>
+            <section class="page-container mt-8 flex flex-col gap-5 md:flex-row md:justify-between md:gap-10">
+                <strong class="text-2xl leading-9">
+                    Українсько-німецьке об'єднання
+                </strong>
+
+                <p class="text-lg leading-8">
+                    у березні 2023
+                    <strong>зареєстрованo благодійною організацюєю</strong>
+                    , що на сьогоднішній день налічує
+                    <strong>більше 60 членів</strong>.
+                    За період існування
+                    <strong>реалізовано більше 100 проєктів</strong>
+                    різного масштабу.
+                </p>
+
+                <div class="flex gap-10">
+                    {{$button := "h-10 flex items-center gap-2 px-3 mt-5 md:mt-0"}}
+
+                    <button class="button-blue-600 {{$button}}">
+                        {{template "icons/phone" "w-4"}}
+
+                        <label class="">
+                            Contact
+                        </label>
+                    </button>
+
+                    <button class="button-red-600 {{$button}}">
+                        {{template "icons/heart" "w-4"}}
+
+                        <label class="hero__donate__button__label">
+                            Donate
+                        </label>
+                    </button>
+                </div>
+            </section>
+
+            <section class="page-container mt-25">
+                <strong class="text-2xl">
+                    Наші головні пріорітети
+                </strong>
+
+                <div class="w-full grid gap-10 grid-cols-1 lg:grid-cols-2">
+                    {{$focusCard := "mt-5 w-fit flex flex-col items-start sm:flex-row sm:items-center gap-8 p-6 border border-gray-200 rounded"}}
+                    {{$focusCardIconContainer := "w-28 min-w-28 h-28 min-h-28 rounded border border-gray-200 flex justify-center items-center"}}
+                    {{$focusCardIcon := "w-20 h-20"}}
+                    {{$focusCardText := "w-fit max-w-[500px] flex flex-col gap-3"}}
+
+                    <div class="{{$focusCard}}">
+                        <div class="{{$focusCardIconContainer}} bg-green-100">
+                            {{template "icons/graduation-cap" (printf "%s fill-green-500" $focusCardIcon)}}
+                        </div>
+
+                        <div class="{{$focusCardText}}">
+                            <strong class="text-xl">
+                                Освіта та культура
+                            </strong>
+
+                            <p class="text-lg">
+                                Вивчення української мови, збереження
+                                національної ідентичості та культурної дипломатії
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="{{$focusCard}} justify-self-end">
+                        <div class="{{$focusCardIconContainer}} bg-amber-100">
+                            {{template "icons/handshake" (printf "%s fill-amber-500" $focusCardIcon)}}
+                        </div>
+
+                        <div class="{{$focusCardText}}">
+                            <strong class="text-xl">
+                                Інтергаційна підтримка
+                            </strong>
+
+                            <p class="text-lg">
+                                Допомога в юридичних, соціальних та психологічних питаннях
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="{{$focusCard}}">
+                        <div class="{{$focusCardIconContainer}} bg-blue-100">
+                            {{template "icons/network" (printf "%s fill-blue-500" $focusCardIcon)}}
+                        </div>
+
+                        <div class="{{$focusCardText}}">
+                            <strong class="text-xl">
+                                Зміцнення зв'язків
+                            </strong>
+
+                            <p class="text-lg">
+                                Організація культурних заходів (концерти, виставки, лекції, тощо)
+                                та розвиток молодіжних ініціатив
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="{{$focusCard}} justify-self-end">
+                        <div class="{{$focusCardIconContainer}} bg-red-100">
+                            {{template "icons/network" (printf "%s fill-red-500" $focusCardIcon)}}
+                        </div>
+
+                        <div class="{{$focusCardText}}">
+                            <strong class="text-xl">
+                                Міжнародне порозуміння
+                            </strong>
+
+                            <p class="text-lg">
+                                Розвиток гуманітарних проєктів між Німеччиною та
+                                Україною та участь у мультикультурному житті міста
+                                Трір
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="mt-20">
+            <div class="page-container flex flex-col gap-5 md:grid md:gap-y-5 md:gap-x-0">
+                <div class="w-full h-0.5 bg-black md:col-span-4"></div>
+
+                {{$footerHeading   := "row-2"}}
+                {{$footerBlock     := "row-3 flex flex-col gap-2"}}
+                {{$footerBlockItem := "flex gap-2"}}
+
+                <!-- Contact -->
+
+                <strong class="{{$footerHeading}}">
+                    Contact
+                </strong>
+
+                <div class="{{$footerBlock}}">
+                    <div class="{{$footerBlockItem}}">
+                        {{template "icons/mail" "w-4"}}
+
+                        <label>
+                            info@dach-trier.com
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Social -->
+
+                <strong class="{{$footerHeading}}">
+                    Social
+                </strong>
+
+                <div class="{{$footerBlock}}">
+                    <div class="{{$footerBlockItem}}">
+                        {{template "icons/instagram" "w-4"}}
+
+                        <label>
+                            Instagram
+                        </label>
+                    </div>
+
+                    <div class="{{$footerBlockItem}}">
+                        {{template "icons/facebook" "w-4"}}
+
+                        <label>
+                            Facebook
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Legal -->
+
+                <strong class="{{$footerHeading}}">
+                    Legal
+                </strong>
+
+                <div class="{{$footerBlock}}">
+                    <div class="{{$footerBlockItem}}">
+                        {{template "icons/document" "w-4"}}
+
+                        <label>
+                            Статут
+                        </label>
+                    </div>
+
+                    <div class="flex flex-col gap-2">
+                        <div class="flex flex-row gap-2">
+                            {{template "icons/thumbs-up" "w-4"}}
+
+                            <label>
+                                Рекомендації
+                            </label>
+                        </div>
+
+                        <ul class="list-disc flex flex-col gap-1 pl-8 ">
+                            <li>Stadtverwaltung Trier</li>
+                            <li>Tourismus Trier</li>
+                        </ul>
+                    </div>
+
+                    <div class="{{$footerBlockItem}}">
+                        {{template "icons/privacy" "w-4"}}
+
+                        <label>
+                            Privacy Policy
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Maintenance -->
+
+                <strong class="{{$footerHeading}}">
+                    Maintenance
+                </strong>
+
+                <div class="{{$footerBlock}}">
+                    <div class="{{$footerBlockItem}}">
+                        {{template "icons/at" "w-4"}}
+
+                        <label>
+                            hiegz
+                        </label>
+                    </div>
+
+                    <div class="{{$footerBlockItem}}">
+                        {{template "icons/mail" "w-4"}}
+
+                        <label>
+                            hello@hiegz.com
+                        </label>
+                    </div>
+
+                    <div class="{{$footerBlockItem}}">
+                        {{template "icons/issues" "w-4"}}
+
+                        <label>
+                            Issues
+                        </label>
+                    </div>
+
+                    <div class="{{$footerBlockItem}}">
+                        {{template "icons/code" "w-4"}}
+
+                        <label>
+                            Source Code
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Copyright -->
+
+                <label class="my-5 md:my-10 row-4 md:col-span-4 text-center">
+                    (c) 2026 DACH e.V. Trier. All rights reserved
+                </label>
+            </div>
+        </footer>
+    </body>
+</html>
+{{end}}
