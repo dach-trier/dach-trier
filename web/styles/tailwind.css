@@ -27,4 +27,20 @@
     --idle-button-sh-blue-600: var(--color-blue-700);
     --hovr-button-bg-blue-600: var(--color-blue-700);
     --hovr-button-sh-blue-600: var(--color-blue-800);
+
+    /* */
+
+    --default-font-family: "Rubik", sans-serif;
+}
+
+@layer base {
+    strong {
+        font-weight: 600;
+    }
+}
+
+@utility page-container {
+    width: calc(100vw - 42px);
+    max-width: 1200px;
+    margin: 0 auto;
 }
