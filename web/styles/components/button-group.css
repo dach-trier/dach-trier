@@ -51,6 +51,8 @@
         /* coloring */
 
         color: --value(--idle-button-fg-*);
+        /* prettier-ignore */
+        svg, path { stroke: --value(--idle-button-fg-*); fill: --value(--idle-button-fg-*); }
         background-color: --value(--idle-button-bg-*);
         /* prettier-ignore */
         &::after { background-color: --value(--idle-button-sh-*); }
