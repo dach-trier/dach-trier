@@ -361,6 +361,35 @@
                         </div>
                     </div>
                 </div>
+
+                {{$project        := "w-full h-auto flex flex-col items-start justify-start gap-5"}}
+                {{$projectImage   := "w-full h-[270px] object-cover rounded"}}
+                {{$projectHeading := "text-2xl leading-9 mx-2"}}
+                {{$projectContent := "list-disc text-lg pl-[1rem] mx-2 flex flex-col gap-6"}}
+
+                <!-- Other -->
+                <div class="mt-20 grid grid-cols-2 gap-x-20">
+                    <!-- Walzer -->
+                    <div class="{{$project}}">
+                        <img class="{{$projectImage}}" src="assets/images/walzer-2.jpg" />
+
+                        <strong class="{{$projectHeading}}">
+                            Випускний вальс української молоді
+                        </strong>
+
+                        <ul class="{{$projectContent}}">
+                            <li>
+                                Реалізовано: 2023, 2024, 2025;
+                                <br/>
+                                заплановано продовження на 2026 рік
+                            </li>
+
+                            <li>
+                                співпраця з BigBand Gymnasium Konz та Music Color Orchestra
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </section>
         </main>
 
