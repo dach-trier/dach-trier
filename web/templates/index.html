@@ -229,146 +229,143 @@
                     Проекти
                 </strong>
 
-                {{$hero          := "flex flex-col md:flex-row items-start justify-start gap-5 md:gap-10"}}
-                {{$heroImage     := "w-full md:w-[45%] h-[300px] flex-none rounded object-cover"}}
-                {{$heroText      := "flex flex-col gap-5"}}
-                {{$heroHeading   := "text-2xl leading-9 md:leading-11"}}
-                {{$heroParagraph := "text-lg"}}
-                {{$cards         := "mt-5 grid grid-cols-1 md:grid-cols-3 gap-x-6"}}
-                {{$card          := "mt-5 flex flex-col gap-4 p-6 border border-gray-200 rounded"}}
-                {{$cardHeading   := "text-xl"}}
-                {{$cardContent   := "list-disc pl-[1em] flex flex-col gap-2"}}
+                <!-- Layout -->
+                <div class="mt-5 w-full grid md:grid-cols-2 gap-20">
+                    {{$hero          := "flex flex-col md:flex-row items-start justify-start gap-5 md:gap-10"}}
+                    {{$heroImage     := "w-full md:w-[45%] h-[300px] flex-none rounded object-cover"}}
+                    {{$heroText      := "flex flex-col gap-5"}}
+                    {{$heroHeading   := "text-2xl leading-9 md:leading-11"}}
+                    {{$heroParagraph := "text-lg"}}
+                    {{$cards         := "mt-5 grid grid-cols-1 md:grid-cols-3 gap-x-6"}}
+                    {{$card          := "mt-5 flex flex-col gap-4 p-6 border border-gray-200 rounded"}}
+                    {{$cardHeading   := "text-xl"}}
+                    {{$cardContent   := "list-disc pl-[1em] flex flex-col gap-2"}}
+                    {{$project        := "w-full h-auto flex flex-col items-start justify-start gap-5"}}
+                    {{$projectImage   := "w-full h-[270px] object-cover rounded"}}
+                    {{$projectHeading := "text-2xl leading-9 md:mx-2"}}
+                    {{$projectContent := "list-disc text-lg pl-[1rem] md:mx-2 flex flex-col gap-6"}}
 
-                <!-- Bereginja -->
-                <div class="mt-5">
-                    <!-- Hero -->
-                    <div class="{{$hero}}">
-                        <img class="{{$heroImage}}" src="assets/images/bereginja-kids.jpg" />
+                    <!-- Bereginja -->
+                    <div class="col-span-full">
+                        <!-- Hero -->
+                        <div class="{{$hero}}">
+                            <img class="{{$heroImage}}" src="assets/images/bereginja-kids.jpg" />
 
-                        <div class="{{$heroText}}">
-                            <strong class="{{$heroHeading}}">
-                                Перша українська школа у Трірі &mdash; Берегиня
-                            </strong>
+                            <div class="{{$heroText}}">
+                                <strong class="{{$heroHeading}}">
+                                    Перша українська школа у Трірі &mdash; Берегиня
+                                </strong>
 
-                            <p class="{{$heroParagraph}}">
-                                Освітньо-культурний центр для українських дітей та молоді
-                                в Німеччині віком від 5 до 17 років.
-                                <br /> <br />
-                                Наразі у школі навчаються <strong>36 дітей</strong>
-                                у 2 підготовчих групах та 6 класаx. <strong>8 досвідчених волонтерів-викладачів</strong>
-                                із педагогічною освітою навчають дітей та підлітків.
-                            </p>
+                                <p class="{{$heroParagraph}}">
+                                    Освітньо-культурний центр для українських дітей та молоді
+                                    в Німеччині віком від 5 до 17 років.
+                                    <br /> <br />
+                                    Наразі у школі навчаються <strong>36 дітей</strong>
+                                    у 2 підготовчих групах та 6 класаx. <strong>8 досвідчених волонтерів-викладачів</strong>
+                                    із педагогічною освітою навчають дітей та підлітків.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Cards -->
+                        <div class="{{$cards}}">
+                            <div class="{{$card}}">
+                                <strong class="{{$cardHeading}}">
+                                    Освітня складова
+                                </strong>
+
+                                <ul class="{{$cardContent}}">
+                                    <li>Українська мова та література</li>
+                                    <li>Математика та природничі науки</li>
+                                    <li>Історія та культура України</li>
+                                </ul>
+                            </div>
+
+                            <div class="{{$card}}">
+                                <strong class="{{$cardHeading}}">
+                                    Творчий розвиток
+                                </strong>
+
+                                <ul class="{{$cardContent}}">
+                                    <li>Музика, малювання, театральний гурток</li>
+                                    <li>Творчі майстер-класи</li>
+                                    <li>Святкування українських свят: Різдво, Великдень, День незалежності</li>
+                                </ul>
+                            </div>
+
+                            <div class="{{$card}}">
+                                <strong class="{{$cardHeading}}">
+                                    Соціальна підтримка
+                                </strong>
+
+                                <ul class="{{$cardContent}}">
+                                    <li>Психологічна підтримка</li>
+                                    <li>Інтеграційні заходи</li>
+                                    <li>Спілкування з однолітками у дружній атмосфері</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
 
+                    <!-- Camp -->
+                    <div class="col-span-full">
+                        <!-- Hero -->
+                        <div class="{{$hero}} md:flex-row-reverse!">
+                            <img class="{{$heroImage}}" src="assets/images/camp-sunset.jpg" />
 
-                    <!-- Cards -->
-                    <div class="{{$cards}}">
+                            <div class="{{$heroText}}">
+                                <strong class="{{$heroHeading}}">
+                                    Дитячі Табори
+                                </strong>
 
-                        <div class="{{$card}}">
-                            <strong class="{{$cardHeading}}">
-                                Освітня складова
-                            </strong>
-
-                            <ul class="{{$cardContent}}">
-                                <li>Українська мова та література</li>
-                                <li>Математика та природничі науки</li>
-                                <li>Історія та культура України</li>
-                            </ul>
+                                <p class="{{$heroParagraph}}">
+                                    Запрошуємо дітей віком 9–16 років провести незабутні канікули в нашому
+                                    таборі! Це місце, де панує дружба, тепло та любов до рідної культури,
+                                    створене для відпочинку, розвитку та нових знайомств.
+                                </p>
+                            </div>
                         </div>
 
-                        <div class="{{$card}}">
-                            <strong class="{{$cardHeading}}">
-                                Творчий розвиток
-                            </strong>
+                        <!-- Cards -->
+                        <div class="{{$cards}}">
+                            <div class="{{$card}}">
+                                <strong class="{{$cardHeading}}">
+                                    Активний відпочинок
+                                </strong>
 
-                            <ul class="{{$cardContent}}">
-                                <li>Музика, малювання, театральний гурток</li>
-                                <li>Творчі майстер-класи</li>
-                                <li>Святкування українських свят: Різдво, Великдень, День незалежності</li>
-                            </ul>
-                        </div>
+                                <ul class="{{$cardContent}}">
+                                    <li>Мін-походи та пікніки на природі</li>
+                                    <li>Спортивні ігри та змагання</li>
+                                    <li>Квести та тематичні пригоди</li>
+                                <ul>
+                            </div>
 
-                        <div class="{{$card}}">
-                            <strong class="{{$cardHeading}}">
-                                Соціальна підтримка
-                            </strong>
+                            <div class="{{$card}}">
+                                <strong class="{{$cardHeading}}">
+                                    Український дух
+                                </strong>
 
-                            <ul class="{{$cardContent}}">
-                                <li>Психологічна підтримка</li>
-                                <li>Інтеграційні заходи</li>
-                                <li>Спілкування з однолітками у дружній атмосфері</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                                <ul class="{{$cardContent}}">
+                                    <li>Вечори біля вогнища з піснями та історіями</li>
+                                    <li>Знайомство з українськими традиціями та національними святкуваннями</li>
+                                    <li>Тематичні дні, присвячені історії та культурі України</li>
+                                <ul>
+                            </div>
 
-                <!-- Camp -->
-                <div class="mt-20">
-                    <!-- Hero -->
-                    <div class="{{$hero}} md:flex-row-reverse!">
-                        <img class="{{$heroImage}}" src="assets/images/camp-sunset.jpg" />
+                            <div class="{{$card}}">
+                                <strong class="{{$cardHeading}}">
+                                    Творчість та розвиток
+                                </strong>
 
-                        <div class="{{$heroText}}">
-                            <strong class="{{$heroHeading}}">
-                                Дитячі Табори
-                            </strong>
-
-                            <p class="{{$heroParagraph}}">
-                                Запрошуємо дітей віком 9–16 років провести незабутні канікули в нашому
-                                таборі! Це місце, де панує дружба, тепло та любов до рідної культури,
-                                створене для відпочинку, розвитку та нових знайомств.
-                            </p>
+                                <ul class="{{$cardContent}}">
+                                    <li>Мистецькі майстер-класи</li>
+                                    <li>Музичні та театральні постановки</li>
+                                    <li>Командні завдання та проєктна робота</li>
+                                <ul>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Cards -->
-                    <div class="{{$cards}}">
-                        <div class="{{$card}}">
-                            <strong class="{{$cardHeading}}">
-                                Активний відпочинок
-                            </strong>
-
-                            <ul class="{{$cardContent}}">
-                                <li>Мін-походи та пікніки на природі</li>
-                                <li>Спортивні ігри та змагання</li>
-                                <li>Квести та тематичні пригоди</li>
-                            <ul>
-                        </div>
-
-                        <div class="{{$card}}">
-                            <strong class="{{$cardHeading}}">
-                                Український дух
-                            </strong>
-
-                            <ul class="{{$cardContent}}">
-                                <li>Вечори біля вогнища з піснями та історіями</li>
-                                <li>Знайомство з українськими традиціями та національними святкуваннями</li>
-                                <li>Тематичні дні, присвячені історії та культурі України</li>
-                            <ul>
-                        </div>
-
-                        <div class="{{$card}}">
-                            <strong class="{{$cardHeading}}">
-                                Творчість та розвиток
-                            </strong>
-
-                            <ul class="{{$cardContent}}">
-                                <li>Мистецькі майстер-класи</li>
-                                <li>Музичні та театральні постановки</li>
-                                <li>Командні завдання та проєктна робота</li>
-                            <ul>
-                        </div>
-                    </div>
-                </div>
-
-                {{$project        := "w-full h-auto flex flex-col items-start justify-start gap-5"}}
-                {{$projectImage   := "w-full h-[270px] object-cover rounded"}}
-                {{$projectHeading := "text-2xl leading-9 md:mx-2"}}
-                {{$projectContent := "list-disc text-lg pl-[1rem] md:mx-2 flex flex-col gap-6"}}
-
-                <!-- Other -->
-                <div class="mt-20 grid grid-cols-1 md:grid-cols-2 gap-y-20 gap-x-20">
                     <!-- Art Workshop -->
                     <div class="{{$project}}">
                         <img class="{{$projectImage}}" src="assets/images/art-2.jpg" />
@@ -414,11 +411,17 @@
                             </li>
                         </ul>
                     </div>
-                </div>
 
-                <button class="button-blue-600 px-2 py-1.5 mt-20 block mx-auto">
-                    Дивитися всі проєкти
-                </button>
+                    <div class="relative col-span-full flex flex-col md:flex-row justify-stretch rounded overflow-hidden border border-gray-200">
+                        <img class="relative w-full h-[300px] md:h-[400px] object-cover" src="assets/images/austausch.jpeg" />
+
+                        <div class="px-6 md:px-10 lg:px-15 pt-10 pb-15 md:w-2/3 flex flex-col justify-center bg-white">
+                            <strong class="text-2xl md:text-4xl">That’s not even all</strong>
+                            <label class="mt-4 md:mt-5 text-lg md:text-xl">You’ve only seen the surface</label>
+                            <button class="mt-8 w-fit button-blue-600 px-3 py-1">Discover the full collection</button>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <section class="page-container mt-20 grid grid-cols-1 md:grid-cols-[3fr_4fr] gap-8 md:gap-20">
