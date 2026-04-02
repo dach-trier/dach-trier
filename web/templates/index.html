@@ -4,602 +4,177 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>DACH e.V. Trier</title>
+        {{template "title"}}
         <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="assets/bundle.css" />
         <link rel="icon" href="assets/dach-logo-simplified.ico" />
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     </head>
     <body>
-        <header class="sticky z-10 top-0 w-screen h-[58px] bg-white">
-            <div class="page-container h-full flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <img class="w-8" src="assets/dach-logo-simplified.svg" />
-                    <strong>DACH e.V. Trier</strong>
-                </div>
-            </div>
-        </header>
-
-        <section class="overflow-hidden relative w-full h-[250px] sm:page-container sm:rounded xl:h-[400px]">
-            <div class="w-full h-full" id="highlight__image__container">
-                <!-- must be in the same order as captions (see below) -->
-
-                {{$highlightImage := "absolute -z-1 w-full h-full object-cover transition-opacity duration-500 data-[state=inactive]:opacity-0 data-[state=active]:opacity-100"}}
-
-                <img class="{{$highlightImage}}" data-state="active"   src="assets/walzer-y0ldi4q.jpg" />
-                <img class="{{$highlightImage}}" data-state="inactive" src="assets/art-1wl3o4x.jpg" />
-                <img class="{{$highlightImage}}" data-state="inactive" src="assets/theater-qssoth3.jpg" />
-                <img class="{{$highlightImage}}" data-state="inactive" src="assets/jugendaustausch-sqji6l4.jpg" />
-                <img class="{{$highlightImage}}" data-state="inactive" src="assets/band-60xx7c3.jpg" />
-                <img class="{{$highlightImage}}" data-state="inactive" src="assets/camp-6bqndr3.jpg" />
-                <img class="{{$highlightImage}}" data-state="inactive" src="assets/bereginja-3avd0zj.jpg" />
-            </div>
-
-            <div class="absolute-container bottom-6 grid grid-rows-2 grid-cols-2">
-                <div class="relative row-2 col-1 self-end">
-                    <!-- must be in the same order as images (see above) -->
-
-                    {{$highlightLabel := "absolute bottom-0 text-white text-shadow-xs text-2xl transition-opacity duration-500 data-[state=inactive]:opacity-0 data-[state=active]:opacity-100"}}
-
-                    <strong class="{{$highlightLabel}}" data-state="active">Walzer</strong>
-                    <strong class="{{$highlightLabel}}" data-state="inactive">Art</strong>
-                    <strong class="{{$highlightLabel}}" data-state="inactive">Theater</strong>
-                    <strong class="{{$highlightLabel}}" data-state="inactive">Jugendaustausch</strong>
-                    <strong class="{{$highlightLabel}}" data-state="inactive">Band</strong>
-                    <strong class="{{$highlightLabel}}" data-state="inactive">Camp</strong>
-                    <strong class="{{$highlightLabel}}" data-state="inactive">Bereginja</strong>
-                </div>
-            </div>
-
-            <!-- Slideshow -->
-            <script>
-                (() => {
-                    const DURATION = 5000;
-
-                    let active_image = document.currentScript.parentNode.querySelector("img[data-state='active']");
-                    let active_label = document.currentScript.parentNode.querySelector("strong[data-state='active']");
-                    let timeout;
-
-                    function getFirstChild(element) {
-                        return element.children[0];
-                    }
-
-                    function getNextSibling(element) {
-                        if (element.nextElementSibling)
-                            return element.nextElementSibling;
-
-                        return getFirstChild(element.parentElement);
-                    }
-
-                    function selectNextSibling() {
-                        clearTimeout(timeout);
-
-                        active_image.dataset["state"] = "inactive";
-                        active_label.dataset["state"] = "inactive";
-
-                        const previous_image = getNextSibling(active_image);
-                        const previous_label = getNextSibling(active_label);
-
-                        active_image = previous_image;
-                        active_image.dataset["state"] = "active";
-                        active_label = previous_label;
-                        active_label.dataset["state"] = "active";
-
-                        setTimeout(selectNextSibling, DURATION);
-                    }
-
-                    setTimeout(selectNextSibling, DURATION);
-                })()
-            </script>
-
-            <!-- Parallax Effect -->
-            <script>
-                (() => {
-                    const element = document.currentScript.parentNode.querySelector("#highlight__image__container");
-
-                    window.addEventListener("scroll", function () {
-                        const progress = Math.min(1, window.scrollY / element.clientHeight);
-
-                        element.style.transform = `scale(${1 + progress * 0.1})`;
-                    });
-                })()
-            </script>
-        </section>
-
-        <main>
-            <section class="page-container mt-8 flex flex-col gap-5 md:flex-row md:justify-between md:gap-10">
-                <strong class="text-2xl leading-9">
-                    Українсько-німецьке об'єднання
-                </strong>
-
-                <p class="text-lg leading-8">
-                    у березні 2023
-                    <strong>зареєстрованo благодійною організацюєю</strong>
-                    , що на сьогоднішній день налічує
-                    <strong>більше 60 членів</strong>.
-                    За період існування
-                    <strong>реалізовано більше 100 проєктів</strong>
-                    різного масштабу.
-                </p>
-
-                <div class="flex gap-10">
-                    {{$button := "h-10 flex items-center gap-2 px-3 mt-5 md:mt-0"}}
-
-                    <button class="button-blue-600 {{$button}}">
-                        {{template "icons/phone" "w-4"}}
-
-                        <label class="">
-                            Contact
-                        </label>
-                    </button>
-
-                    <button class="button-red-600 {{$button}}">
-                        {{template "icons/heart" "w-4"}}
-
-                        <label class="hero__donate__button__label">
-                            Donate
-                        </label>
-                    </button>
-                </div>
-            </section>
-
-            <section class="page-container mt-25">
-                <strong class="text-2xl">
-                    Наші головні пріорітети
-                </strong>
-
-                <div class="w-full grid gap-10 grid-cols-1 lg:grid-cols-2">
-                    {{$focusCard := "mt-5 w-fit flex flex-col items-start sm:flex-row sm:items-center gap-8 p-6 border border-gray-200 rounded"}}
-                    {{$focusCardIconContainer := "w-28 min-w-28 h-28 min-h-28 rounded border border-gray-200 flex justify-center items-center"}}
-                    {{$focusCardIcon := "w-20 h-20"}}
-                    {{$focusCardText := "w-fit max-w-[500px] flex flex-col gap-3"}}
-
-                    <div class="{{$focusCard}}">
-                        <div class="{{$focusCardIconContainer}} bg-green-100">
-                            {{template "icons/graduation-cap" (printf "%s fill-green-500" $focusCardIcon)}}
-                        </div>
-
-                        <div class="{{$focusCardText}}">
-                            <strong class="text-xl">
-                                Освіта та культура
-                            </strong>
-
-                            <p class="text-lg">
-                                Вивчення української мови, збереження
-                                національної ідентичості та культурної дипломатії
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="{{$focusCard}} justify-self-end">
-                        <div class="{{$focusCardIconContainer}} bg-amber-100">
-                            {{template "icons/handshake" (printf "%s fill-amber-500" $focusCardIcon)}}
-                        </div>
-
-                        <div class="{{$focusCardText}}">
-                            <strong class="text-xl">
-                                Інтергаційна підтримка
-                            </strong>
-
-                            <p class="text-lg">
-                                Допомога в юридичних, соціальних та психологічних питаннях
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="{{$focusCard}}">
-                        <div class="{{$focusCardIconContainer}} bg-blue-100">
-                            {{template "icons/network" (printf "%s fill-blue-500" $focusCardIcon)}}
-                        </div>
-
-                        <div class="{{$focusCardText}}">
-                            <strong class="text-xl">
-                                Зміцнення зв'язків
-                            </strong>
-
-                            <p class="text-lg">
-                                Організація культурних заходів (концерти, виставки, лекції, тощо)
-                                та розвиток молодіжних ініціатив
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="{{$focusCard}} justify-self-end">
-                        <div class="{{$focusCardIconContainer}} bg-red-100">
-                            {{template "icons/network" (printf "%s fill-red-500" $focusCardIcon)}}
-                        </div>
-
-                        <div class="{{$focusCardText}}">
-                            <strong class="text-xl">
-                                Міжнародне порозуміння
-                            </strong>
-
-                            <p class="text-lg">
-                                Розвиток гуманітарних проєктів між Німеччиною та
-                                Україною та участь у мультикультурному житті міста
-                                Трір
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="mt-25 page-container">
-                <strong class="text-2xl">
-                    Проекти
-                </strong>
-
-                <!-- Layout -->
-                <div class="mt-5 w-full grid md:grid-cols-2 gap-20">
-                    {{$hero          := "flex flex-col md:flex-row items-start justify-start gap-5 md:gap-10"}}
-                    {{$heroImage     := "w-full md:w-[45%] h-[300px] flex-none rounded object-cover"}}
-                    {{$heroText      := "flex flex-col gap-5"}}
-                    {{$heroHeading   := "text-2xl leading-9 md:leading-11"}}
-                    {{$heroParagraph := "text-lg"}}
-                    {{$cards         := "mt-5 grid grid-cols-1 md:grid-cols-3 gap-x-6"}}
-                    {{$card          := "mt-5 flex flex-col gap-4 p-6 border border-gray-200 rounded"}}
-                    {{$cardHeading   := "text-xl"}}
-                    {{$cardContent   := "list-disc pl-[1em] flex flex-col gap-2"}}
-                    {{$project        := "w-full h-auto flex flex-col items-start justify-start gap-5"}}
-                    {{$projectImage   := "w-full h-[270px] object-cover rounded"}}
-                    {{$projectHeading := "text-2xl leading-9 md:mx-2"}}
-                    {{$projectContent := "list-disc text-lg pl-[1rem] md:mx-2 flex flex-col gap-6"}}
-
-                    <!-- Bereginja -->
-                    <div class="col-span-full">
-                        <!-- Hero -->
-                        <div class="{{$hero}}">
-                            <img class="{{$heroImage}}" src="assets/bereginja-b3c3psg.jpg" />
-
-                            <div class="{{$heroText}}">
-                                <strong class="{{$heroHeading}}">
-                                    Перша українська школа у Трірі &mdash; Берегиня
-                                </strong>
-
-                                <p class="{{$heroParagraph}}">
-                                    Освітньо-культурний центр для українських дітей та молоді
-                                    в Німеччині віком від 5 до 17 років.
-                                    <br /> <br />
-                                    Наразі у школі навчаються <strong>36 дітей</strong>
-                                    у 2 підготовчих групах та 6 класаx. <strong>8 досвідчених волонтерів-викладачів</strong>
-                                    із педагогічною освітою навчають дітей та підлітків.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Cards -->
-                        <div class="{{$cards}}">
-                            <div class="{{$card}}">
-                                <strong class="{{$cardHeading}}">
-                                    Освітня складова
-                                </strong>
-
-                                <ul class="{{$cardContent}}">
-                                    <li>Українська мова та література</li>
-                                    <li>Математика та природничі науки</li>
-                                    <li>Історія та культура України</li>
-                                </ul>
-                            </div>
-
-                            <div class="{{$card}}">
-                                <strong class="{{$cardHeading}}">
-                                    Творчий розвиток
-                                </strong>
-
-                                <ul class="{{$cardContent}}">
-                                    <li>Музика, малювання, театральний гурток</li>
-                                    <li>Творчі майстер-класи</li>
-                                    <li>Святкування українських свят: Різдво, Великдень, День незалежності</li>
-                                </ul>
-                            </div>
-
-                            <div class="{{$card}}">
-                                <strong class="{{$cardHeading}}">
-                                    Соціальна підтримка
-                                </strong>
-
-                                <ul class="{{$cardContent}}">
-                                    <li>Психологічна підтримка</li>
-                                    <li>Інтеграційні заходи</li>
-                                    <li>Спілкування з однолітками у дружній атмосфері</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Camp -->
-                    <div class="col-span-full">
-                        <!-- Hero -->
-                        <div class="{{$hero}} md:flex-row-reverse!">
-                            <img class="{{$heroImage}}" src="assets/camp-vpqiwoj.jpg" />
-
-                            <div class="{{$heroText}}">
-                                <strong class="{{$heroHeading}}">
-                                    Дитячі Табори
-                                </strong>
-
-                                <p class="{{$heroParagraph}}">
-                                    Запрошуємо дітей віком 9–16 років провести незабутні канікули в нашому
-                                    таборі! Це місце, де панує дружба, тепло та любов до рідної культури,
-                                    створене для відпочинку, розвитку та нових знайомств.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Cards -->
-                        <div class="{{$cards}}">
-                            <div class="{{$card}}">
-                                <strong class="{{$cardHeading}}">
-                                    Активний відпочинок
-                                </strong>
-
-                                <ul class="{{$cardContent}}">
-                                    <li>Мін-походи та пікніки на природі</li>
-                                    <li>Спортивні ігри та змагання</li>
-                                    <li>Квести та тематичні пригоди</li>
-                                <ul>
-                            </div>
-
-                            <div class="{{$card}}">
-                                <strong class="{{$cardHeading}}">
-                                    Український дух
-                                </strong>
-
-                                <ul class="{{$cardContent}}">
-                                    <li>Вечори біля вогнища з піснями та історіями</li>
-                                    <li>Знайомство з українськими традиціями та національними святкуваннями</li>
-                                    <li>Тематичні дні, присвячені історії та культурі України</li>
-                                <ul>
-                            </div>
-
-                            <div class="{{$card}}">
-                                <strong class="{{$cardHeading}}">
-                                    Творчість та розвиток
-                                </strong>
-
-                                <ul class="{{$cardContent}}">
-                                    <li>Мистецькі майстер-класи</li>
-                                    <li>Музичні та театральні постановки</li>
-                                    <li>Командні завдання та проєктна робота</li>
-                                <ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Art Workshop -->
-                    <div class="{{$project}}">
-                        <img class="{{$projectImage}}" src="assets/art-ryeagqz.jpg" />
-
-                        <strong class="{{$projectHeading}}">
-                            Арт Майстерня
-                        </strong>
-
-                        <ul class="{{$projectContent}}">
-                            <li>
-                                Без правил та оцінок: 
-                                Ми не вчимо «правильно» малювати. Ми вчимо
-                                прислухатися до себе і дозволяти образам виникати зсередини,
-                                керуючись інтуїцією.
-                            </li>
-
-                            <li>
-                                Дозвіл на всі емоції:
-                                На полотні можна все — і радість, і сум, і гнів, і
-                                спокій. Це спосіб дати видиме вираження
-                                своєму внутрішньому світу.
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Walzer -->
-                    <div class="{{$project}}">
-                        <img class="{{$projectImage}}" src="assets/walzer-lvzdual.jpg" />
-
-                        <strong class="{{$projectHeading}}">
-                            Випускний вальс української молоді
-                        </strong>
-
-                        <ul class="{{$projectContent}}">
-                            <li>
-                                Реалізовано: 2023, 2024, 2025;
-                                <br/>
-                                заплановано продовження на 2026 рік
-                            </li>
-
-                            <li>
-                                співпраця з BigBand Gymnasium Konz та Music Color Orchestra
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="relative col-span-full flex flex-col md:flex-row justify-stretch rounded overflow-hidden border border-gray-200">
-                        <img class="relative w-full h-[300px] md:h-[400px] object-cover" src="assets/jugendaustausch-zmu4cey.jpeg" />
-
-                        <div class="px-6 md:px-10 lg:px-15 pt-10 pb-15 md:w-2/3 flex flex-col justify-center bg-white">
-                            <strong class="text-2xl md:text-4xl">That’s not even all</strong>
-                            <label class="mt-4 md:mt-5 text-lg md:text-xl">You’ve only seen the surface</label>
-                            <button class="mt-8 w-fit button-blue-600 px-3 py-1">Discover the full collection</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="page-container mt-20 grid grid-cols-1 md:grid-cols-[3fr_4fr] gap-8 md:gap-20">
-                <div class="flex flex-col gap-5">
-                    <h1 class="font-semibold text-2xl">
-                        Get in touch with us
-                    </h1>
-
-                    <p class="text-lg leading-8">
-                        Have questions? Either
-                        fill up the form on the right or
-                        send an email to info@dach-trier.com
-                    </p>
-                </div>
-
-                <form class="grid grid-cols-2 gap-4">
-                    {{$field := "flex flex-col justify-start items-start gap-1"}}
-                    {{$input := "w-full h-full rounded border border-gray-200 py-1.5 px-2 outline-none placeholder:text-gray-400"}}
-
-                    <div class="{{$field}}">
-                        <input class="{{$input}}" placeholder="first name" />
-                    </div>
-
-                    <div class="{{$field}}">
-                        <input class="{{$input}}" placeholder="last name" />
-                    </div>
-
-                    <div class="{{$field}}">
-                        <input class="{{$input}}" placeholder="email" />
-                    </div>
-
-                    <div class="{{$field}}">
-                        <input class="{{$input}}" placeholder="phone number" />
-                    </div>
-
-                    <textarea class="{{$input}} col-span-2 min-h-[100px]" placeholder="message"></textarea>
-
-                    <button type="button" class="button-blue-600 mt-4 px-3 py-1 w-fit col-span-2">
-                        Send
-                    </button>
-                </form>
-            </section>
-        </main>
-
-        <footer class="mt-20">
-
-            <div class="page-container flex flex-col gap-5 md:grid md:gap-y-5 md:gap-x-0">
-                <div class="w-full h-0.5 bg-black md:col-span-4"></div>
-
-                {{$footerHeading   := "row-2"}}
-                {{$footerBlock     := "row-3 flex flex-col gap-2"}}
-                {{$footerBlockItem := "flex gap-2"}}
-
-                <!-- Contact -->
-
-                <strong class="{{$footerHeading}}">
-                    Contact
-                </strong>
-
-                <div class="{{$footerBlock}}">
-                    <div class="{{$footerBlockItem}}">
-                        {{template "icons/mail" "w-4"}}
-
-                        <label>
-                            info@dach-trier.com
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Social -->
-
-                <strong class="{{$footerHeading}}">
-                    Social
-                </strong>
-
-                <div class="{{$footerBlock}}">
-                    <div class="{{$footerBlockItem}}">
-                        {{template "icons/instagram" "w-4"}}
-
-                        <label>
-                            Instagram
-                        </label>
-                    </div>
-
-                    <div class="{{$footerBlockItem}}">
-                        {{template "icons/facebook" "w-4"}}
-
-                        <label>
-                            Facebook
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Legal -->
-
-                <strong class="{{$footerHeading}}">
-                    Legal
-                </strong>
-
-                <div class="{{$footerBlock}}">
-                    <div class="{{$footerBlockItem}}">
-                        {{template "icons/document" "w-4"}}
-
-                        <label>
-                            Статут
-                        </label>
-                    </div>
-
-                    <div class="flex flex-col gap-2">
-                        <div class="flex flex-row gap-2">
-                            {{template "icons/thumbs-up" "w-4"}}
-
-                            <label>
-                                Рекомендації
-                            </label>
-                        </div>
-
-                        <ul class="list-disc flex flex-col gap-1 pl-8 ">
-                            <li>Stadtverwaltung Trier</li>
-                            <li>Tourismus Trier</li>
-                        </ul>
-                    </div>
-
-                    <div class="{{$footerBlockItem}}">
-                        {{template "icons/privacy" "w-4"}}
-
-                        <label>
-                            Privacy Policy
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Maintenance -->
-
-                <strong class="{{$footerHeading}}">
-                    Maintenance
-                </strong>
-
-                <div class="{{$footerBlock}}">
-                    <div class="{{$footerBlockItem}}">
-                        {{template "icons/at" "w-4"}}
-
-                        <label>
-                            hiegz
-                        </label>
-                    </div>
-
-                    <div class="{{$footerBlockItem}}">
-                        {{template "icons/mail" "w-4"}}
-
-                        <label>
-                            hello@hiegz.com
-                        </label>
-                    </div>
-
-                    <div class="{{$footerBlockItem}}">
-                        {{template "icons/issues" "w-4"}}
-
-                        <label>
-                            Issues
-                        </label>
-                    </div>
-
-                    <div class="{{$footerBlockItem}}">
-                        {{template "icons/code" "w-4"}}
-
-                        <label>
-                            Source Code
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Copyright -->
-
-                <label class="my-5 md:my-10 row-4 md:col-span-4 text-center">
-                    (c) 2026 DACH e.V. Trier. All rights reserved
-                </label>
-            </div>
-        </footer>
+        {{template "content" .}}
     </body>
 </html>
+{{end}}
+
+{{define "title"}}
+<title>{{.Title}}</title>
+{{end}}
+
+{{define "content"}}
+{{template "header" .}}
+{{template "index.banner" .}}
+{{template "index.hero"}}
+{{template "index.navigation"}}
+{{template "index.contact"}}
+{{template "footer"}}
+{{end}}
+
+{{define "index.banner"}}
+<section class="w-full h-[250px] xl:h-[400px] xl:rounded overflow-hidden">
+    <div class="relative w-full h-full">
+        {{range .Events}}
+        <div class="absolute top-0 left-0 w-full h-full">
+            <img
+                class="absolute top-0 left-0 w-full h-full object-cover"
+                src="{{.Preview.URL}}"
+            />
+
+            <label class="absolute bottom-6 left-6 font-medium text-2xl text-shadow-xl text-white">
+                {{.Name}}
+            </label>
+        </div>
+        {{end}}
+    </div>
+</section>
+{{end}}
+
+{{define "index.hero"}}
+<section class="page-container mt-8 flex flex-col gap-5 md:flex-row md:justify-between md:gap-10">
+    <h1 class="text-2xl leading-9">
+        Українсько-німецьке об'єднання
+    </h1>
+
+    <p class="text-lg leading-8">
+        у березні 2023
+        <strong>зареєстрованo благодійною організацюєю</strong>,
+        що на сьогоднішній день налічує
+        <strong>більше 60 членів</strong>.
+        За період існування
+        <strong>реалізовано більше 100 проєктів</strong>
+        різного масштабу.
+    </p>
+
+    <div class="flex gap-10">
+        <button class="h-10 flex items-center gap-2 px-3 mt-5 md:mt-0 button-blue-600">
+            {{template "icons/phone" "w-4"}}
+            Contact
+        </button>
+
+        <button class="h-10 flex items-center gap-2 px-3 mt-5 md:mt-0 button-red-600">
+            {{template "icons/heart" "w-4"}}
+            Donate
+        </button>
+    </div>
+</section>
+{{end}}
+
+{{define "index.navigation"}}
+
+{{$card := "w-full flex flex-col lg:flex-row gap-8 p-6 border border-gray-200 rounded even:justify-self-end"}}
+{{$icon := "row-span-2 w-28 min-w-28 h-28 min-h-28 rounded border border-gray-200 flex justify-center items-center"}}
+
+<section class="mt-20">
+    <h1 class="text-2xl col-span-full">
+        Наші ініціативи
+    </h1>
+
+    <div class="grid gap-10 grid-cols-1 md:grid-cols-2 mt-5">
+        <div class="{{$card}}">
+            <div class="{{$icon}} bg-green-100 fill-green-500">
+                <!-- ... -->
+            </div>
+
+            <div>
+                <h2 class="text-xl">
+                    Проекти
+                </h2>
+
+                <p class="mt-4 text-lg">
+                    Перша українська школа у Трірі, дитячий табір, арт майстерня, ...
+                </p>
+
+                <button
+                    x-data
+                    @click="window.location.href='/projects'"
+                    class="button-blue-600 px-2 py-1 mt-6"
+                >
+                    Дізнатися більше
+                </button>
+            </div>
+        </div>
+
+        <div class="{{$card}}">
+            <div class="{{$icon}} bg-amber-100 fill-amber-500">
+                <!-- ... -->
+            </div>
+
+            <div>
+                <h2 class="text-xl">
+                    Події
+                </h2>
+
+                <p class="mt-4 text-lg">
+                    Концерти, виставки, лекції, волoнтерськa діяльність, ...
+                </p>
+
+                <button class="button-blue-600 px-2 py-1 mt-6">
+                    Дізнатися більше
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+{{end}}
+
+{{define "index.contact"}}
+<section class="page-container mt-20 grid grid-cols-1 md:grid-cols-[3fr_4fr] gap-8 md:gap-20">
+    <div class="flex flex-col gap-5">
+        <h1 class="font-semibold text-2xl">
+            Get in touch with us
+        </h1>
+
+        <p class="text-lg leading-8">
+            Have questions? Either
+            fill up the form on the right or
+            send an email to info@dach-trier.com
+        </p>
+    </div>
+
+    <form class="grid grid-cols-2 gap-4">
+        {{$field := "flex flex-col justify-start items-start gap-1"}}
+        {{$input := "w-full h-full rounded border border-gray-200 py-1.5 px-2 outline-none placeholder:text-gray-400"}}
+
+        <div class="{{$field}}">
+            <input class="{{$input}}" placeholder="first name" />
+        </div>
+
+        <div class="{{$field}}">
+            <input class="{{$input}}" placeholder="last name" />
+        </div>
+
+        <div class="{{$field}}">
+            <input class="{{$input}}" placeholder="email" />
+        </div>
+
+        <div class="{{$field}}">
+            <input class="{{$input}}" placeholder="phone number" />
+        </div>
+
+        <textarea class="{{$input}} col-span-2 min-h-[100px]" placeholder="message"></textarea>
+
+        <button type="button" class="button-blue-600 mt-4 px-3 py-1 w-fit col-span-2">
+            Send
+        </button>
+    </form>
+</section>
 {{end}}

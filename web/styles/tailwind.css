@@ -40,22 +40,19 @@
 }
 
 @layer base {
+    section,
+    main,
+    footer {
+        width: calc(100vw - 42px);
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
     strong {
         font-weight: 600;
     }
-}
-
-@utility page-container {
-    width: calc(100vw - 42px);
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-@utility absolute-container {
-    position: absolute;
-    width: calc(100% - 42px);
-    max-width: 1200px;
-
-    left: 50%;
-    transform: translateX(-50%);
 }
