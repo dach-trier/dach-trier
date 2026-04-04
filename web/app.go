@@ -80,7 +80,7 @@ func (app *App) serveProjectPage(w http.ResponseWriter, r *http.Request) {
 	}
 
 	tmpl.ExecuteTemplate(w, "page", props{
-		Title: "DACH e.V. Trier - Projects",
+		Title: "DACH e.V. Trier",
 		Projects: []models.Project{
 			models.Project{
 				Preview:     &models.Image{URL: "assets/bereginja-b3c3psg.jpg"},
