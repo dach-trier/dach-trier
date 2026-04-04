@@ -64,28 +64,22 @@
 {{define "index.hero"}}
 <section class="page-container mt-8 flex flex-col gap-5 md:flex-row md:justify-between md:gap-10">
     <h1 class="text-2xl leading-9">
-        Українсько-німецьке об'єднання
+        {{t "index.hero.heading"}}
     </h1>
 
     <p class="text-lg leading-8">
-        у березні 2023
-        <strong>зареєстрованo благодійною організацюєю</strong>,
-        що на сьогоднішній день налічує
-        <strong>більше 60 членів</strong>.
-        За період існування
-        <strong>реалізовано більше 100 проєктів</strong>
-        різного масштабу.
+        {{t "index.hero.description"}}
     </p>
 
     <div class="flex gap-10">
-        <button class="h-10 flex items-center gap-2 px-3 mt-5 md:mt-0 button-blue-600">
+        <button class="w-max h-10 flex items-center gap-2 px-3 mt-5 md:mt-0 button-blue-600">
             {{template "icons/phone" "w-4"}}
-            Contact
+            {{t "index.hero.contact"}}
         </button>
 
-        <button class="h-10 flex items-center gap-2 px-3 mt-5 md:mt-0 button-red-600">
+        <button class="w-max h-10 flex items-center gap-2 px-3 mt-5 md:mt-0 button-red-600">
             {{template "icons/heart" "w-4"}}
-            Donate
+            {{t "index.hero.support"}}
         </button>
     </div>
 </section>
@@ -98,7 +92,7 @@
 
 <section class="mt-20">
     <h1 class="text-2xl col-span-full">
-        Наші ініціативи
+        {{t "index.navigation.heading"}}
     </h1>
 
     <div class="grid gap-10 grid-cols-1 md:grid-cols-2 mt-5">
@@ -109,11 +103,11 @@
 
             <div>
                 <h2 class="text-xl">
-                    Проекти
+                    {{t "index.navigation.projects.heading"}}
                 </h2>
 
                 <p class="mt-4 text-lg">
-                    Перша українська школа у Трірі, дитячий табір, арт майстерня, ...
+                    {{t "index.navigation.projects.description"}}
                 </p>
 
                 <button
@@ -121,7 +115,7 @@
                     @click="window.location.href='/projects'"
                     class="button-blue-600 px-2 py-1 mt-6"
                 >
-                    Дізнатися більше
+                    {{t "index.navigation.projects.learn-more"}}
                 </button>
             </div>
         </div>
@@ -133,11 +127,11 @@
 
             <div>
                 <h2 class="text-xl">
-                    Події
+                    {{t "index.navigation.events.heading"}}
                 </h2>
 
                 <p class="mt-4 text-lg">
-                    Концерти, виставки, лекції, волoнтерськa діяльність, ...
+                    {{t "index.navigation.events.description"}}
                 </p>
 
                 <button
@@ -145,7 +139,7 @@
                     @click="window.location.href='/events'"
                     class="button-blue-600 px-2 py-1 mt-6"
                 >
-                    Дізнатися більше
+                    {{t "index.navigation.events.learn-more"}}
                 </button>
             </div>
         </div>
@@ -157,13 +151,11 @@
 <section class="page-container mt-20 grid grid-cols-1 md:grid-cols-[3fr_4fr] gap-8 md:gap-20">
     <div class="flex flex-col gap-5">
         <h1 class="font-semibold text-2xl">
-            Get in touch with us
+            {{t "index.contact.heading"}}
         </h1>
 
         <p class="text-lg leading-8">
-            Have questions? Either
-            fill up the form on the right or
-            send an email to info@dach-trier.com
+            {{t "index.contact.description"}}
         </p>
     </div>
 

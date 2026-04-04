@@ -1,22 +1,39 @@
 package web
 
 import (
+	"embed"
+	"golang.org/x/text/language"
 	"log"
 	"net/http"
 
 	"html/template"
 
+	i18n "dach-trier.com/i18n"
+	acceptlanguage "dach-trier.com/i18n/acceptlanguage"
 	models "dach-trier.com/web/models"
 
 	chi "github.com/go-chi/chi/v5"
 	chi_middleware "github.com/go-chi/chi/v5/middleware"
 )
 
-// Global Application State
-type App struct{}
+//go:embed i18n/*.json
+var i18nFS embed.FS
+var i18nSupportedLanguages = []language.Tag{language.AmericanEnglish, language.BritishEnglish, language.English, language.German, language.Ukrainian, language.Russian}
 
-func NewApp() *App {
-	return &App{}
+// Global Application State
+type App struct {
+	bundle *i18n.Bundle
+}
+
+func NewApp() (*App, error) {
+	app := &App{}
+
+	app.bundle = i18n.NewBundle()
+	app.bundle.MustLoadJsonTranslationsFS(language.English, i18nFS, "i18n/en.json")
+	app.bundle.MustLoadJsonTranslationsFS(language.German, i18nFS, "i18n/de.json")
+	app.bundle.MustLoadJsonTranslationsFS(language.Ukrainian, i18nFS, "i18n/uk.json")
+
+	return app, nil
 }
 
 func (app *App) Router() http.Handler {
@@ -41,7 +58,22 @@ func (app *App) Router() http.Handler {
 func (app *App) serveIndexPage(w http.ResponseWriter, r *http.Request) {
 	var tmpl *template.Template
 
+	lang := acceptlanguage.MustSelect(r.Header.Get("Accept-Language"), i18nSupportedLanguages)
+	switch lang {
+	case language.AmericanEnglish, language.BritishEnglish:
+		lang = language.English
+	case language.Russian:
+		lang = language.Ukrainian
+	}
+	localizer := i18n.NewLocalizer(app.bundle, lang)
+
 	tmpl = template.New("")
+	tmpl = tmpl.Funcs(template.FuncMap{
+		"t": func(id string, a ...any) template.HTML {
+			return template.HTML(localizer.MustLocalize(id, a...))
+		},
+	})
+
 	tmpl = template.Must(tmpl.ParseFiles("web/templates/index.html"))
 	tmpl = template.Must(tmpl.ParseFiles("web/templates/header.html"))
 	tmpl = template.Must(tmpl.ParseFiles("web/templates/footer.html"))
@@ -53,23 +85,30 @@ func (app *App) serveIndexPage(w http.ResponseWriter, r *http.Request) {
 	}
 
 	tmpl.ExecuteTemplate(w, "page", props{
-		Title: "DACH e.V. Trier",
-		Events: []models.Event{
-			models.Event{Preview: &models.Image{URL: "assets/walzer-y0ldi4q.jpg"}, Name: "Walzer"},
-			models.Event{Preview: &models.Image{URL: "assets/art-1wl3o4x.jpg"}, Name: "Art Workshop"},
-			models.Event{Preview: &models.Image{URL: "assets/theater-qssoth3.jpg"}, Name: "Theater"},
-			models.Event{Preview: &models.Image{URL: "assets/jugendaustausch-sqji6l4.jpg"}, Name: "Jugendaustausch"},
-			models.Event{Preview: &models.Image{URL: "assets/band-60xx7c3.jpg"}, Name: "Band"},
-			models.Event{Preview: &models.Image{URL: "assets/camp-6bqndr3.jpg"}, Name: "Camp"},
-			models.Event{Preview: &models.Image{URL: "assets/bereginja-3avd0zj.jpg"}, Name: "Bereginja"},
-		},
+		Title:  "DACH e.V. Trier",
+		Events: models.GetEvents(lang),
 	})
 }
 
 func (app *App) serveProjectPage(w http.ResponseWriter, r *http.Request) {
 	var tmpl *template.Template
 
+	lang := acceptlanguage.MustSelect(r.Header.Get("Accept-Language"), i18nSupportedLanguages)
+	switch lang {
+	case language.AmericanEnglish, language.BritishEnglish:
+		lang = language.English
+	case language.Russian:
+		lang = language.Ukrainian
+	}
+	localizer := i18n.NewLocalizer(app.bundle, lang)
+
 	tmpl = template.New("")
+	tmpl = tmpl.Funcs(template.FuncMap{
+		"t": func(id string, a ...any) template.HTML {
+			return template.HTML(localizer.MustLocalize(id, a...))
+		},
+	})
+
 	tmpl = template.Must(tmpl.ParseFiles("web/templates/projects.html"))
 	tmpl = template.Must(tmpl.ParseFiles("web/templates/header.html"))
 	tmpl = template.Must(tmpl.ParseFiles("web/templates/footer.html"))
@@ -81,36 +120,30 @@ func (app *App) serveProjectPage(w http.ResponseWriter, r *http.Request) {
 	}
 
 	tmpl.ExecuteTemplate(w, "page", props{
-		Title: "DACH e.V. Trier",
-		Projects: []models.Project{
-			models.Project{
-				Preview:     &models.Image{URL: "assets/bereginja-b3c3psg.jpg"},
-				Name:        template.HTML("Перша українська школа у Трірі &mdash; Берегиня"),
-				Description: template.HTML("Освітньо-культурний центр для українських дітей та молоді в Німеччині віком від 5 до 17 років. <br /> <br /> Наразі у школі навчаються <strong>36 дітей</strong> у 2 підготовчих групах та 6 класаx. <strong>8 досвідчених волонтерів-викладачів</strong> із педагогічною освітою навчають дітей та підлітків."),
-			},
-			models.Project{
-				Preview:     &models.Image{URL: "assets/camp-vpqiwoj.jpg"},
-				Name:        template.HTML("Дитячі Табори"),
-				Description: template.HTML("Запрошуємо дітей віком 9–16 років провести незабутні канікули в нашому таборі! <br /> <br /> Це місце, де панує дружба, тепло та любов до рідної культури, створене для відпочинку, розвитку та нових знайомств."),
-			},
-			models.Project{
-				Preview:     &models.Image{URL: "assets/art-ryeagqz.jpg"},
-				Name:        template.HTML("Арт Майстерня"),
-				Description: template.HTML("безпечний простір, де українська молодь у Німеччині може досліджувати свої емоції, знаходити внутрішній спокій та відновлювати зв&#39;язок з собою через творчість."),
-			},
-			models.Project{
-				Preview:     &models.Image{URL: "assets/band-60xx7c3.jpg"},
-				Name:        template.HTML("Музичний Гурт"),
-				Description: template.HTML("Заснований у 2024 році, триваючий проєкт для підтримки молодих талантів"),
-			},
-		},
+		Title:    "DACH e.V. Trier",
+		Projects: models.GetProjects(lang),
 	})
 }
 
 func (app *App) serveEventPage(w http.ResponseWriter, r *http.Request) {
 	var tmpl *template.Template
 
+	lang := acceptlanguage.MustSelect(r.Header.Get("Accept-Language"), i18nSupportedLanguages)
+	switch lang {
+	case language.AmericanEnglish, language.BritishEnglish:
+		lang = language.English
+	case language.Russian:
+		lang = language.Ukrainian
+	}
+	localizer := i18n.NewLocalizer(app.bundle, lang)
+
 	tmpl = template.New("")
+	tmpl = tmpl.Funcs(template.FuncMap{
+		"t": func(id string, a ...any) template.HTML {
+			return template.HTML(localizer.MustLocalize(id, a...))
+		},
+	})
+
 	tmpl = template.Must(tmpl.ParseFiles("web/templates/event-page.html"))
 	tmpl = template.Must(tmpl.ParseFiles("web/templates/header.html"))
 	tmpl = template.Must(tmpl.ParseFiles("web/templates/footer.html"))

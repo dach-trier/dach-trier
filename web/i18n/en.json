@@ -1,0 +1,47 @@
+{
+    "index": {
+        "hero": {
+            "heading": "Ukrainian-German Association",
+            "description": "a registered <strong>charitable organization</strong>, uniting a growing community of <strong>over 60 members</strong> and driving impact through <strong>more than 100 successfully completed projects</strong> of varying scales.",
+            "contact": "Contact",
+            "support": "Support"
+        },
+        "navigation": {
+            "heading": "Our Initiatives",
+            "projects": {
+                "heading": "Projects",
+                "description": "The first Ukrainian school in Trier, youth camp, art workshop, ...",
+                "learn-more": "Learn more"
+            },
+            "events": {
+                "heading": "Events",
+                "description": "Concerts, exhibitions, lectures, volunteer activities, ...",
+                "learn-more": "Learn more"
+            }
+        },
+        "contact": {
+            "heading": "Contact Us",
+            "description": "Have questions? Send us an email at info@dach-trier.com or fill out the form, and we’ll get back to you as soon as possible."
+        }
+    },
+    "footer": {
+        "contact": {
+            "heading": "Contact"
+        },
+        "socials": {
+            "heading": "Socials"
+        },
+        "legal": {
+            "heading": "Legal",
+            "charter": "Charter",
+            "recommendations": "Recommendations",
+            "privacy-policy": "Privacy Policy"
+        },
+        "maintenance": {
+            "heading": "Maintenance",
+            "issues": "Issues",
+            "source-code": "Source Code"
+        },
+        "copyright": "(c) 2026 DACH e.V. Trier. All rights reserved"
+    }
+}

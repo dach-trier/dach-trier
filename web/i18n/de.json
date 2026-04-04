@@ -1,0 +1,47 @@
+{
+    "index": {
+        "hero": {
+            "heading": "Ukrainisch-Deutsches Verein",
+            "description": "eine registrierte <strong>gemeinnützige Organisation</strong>, die eine wachsende Gemeinschaft von <strong>über 60 Mitgliedern</strong> vereint und durch <strong>mehr als 100 erfolgreich umgesetzte Projekte</strong> unterschiedlicher Größen nachhaltige Wirkung erzielt.",
+            "contact": "Kontakt",
+            "support": "Unterstützen"
+        },
+        "navigation": {
+            "heading": "Unsere Initiativen",
+            "projects": {
+                "heading": "Projekte",
+                "description": "Die erste ukrainische Schule in Trier, Kindercamp, Art Workshop, ...",
+                "learn-more": "Mehr erfahren"
+            },
+            "events": {
+                "heading": "Veranstaltungen",
+                "description": "Konzerte, Ausstellungen, Vorträge, Freiwilligenarbeit, ...",
+                "learn-more": "Mehr erfahren"
+            }
+        },
+        "contact": {
+            "heading": "Kontaktieren Sie uns",
+            "description": "Fragen? Schreiben Sie uns eine E-Mail an info@dach-trier.com oder füllen Sie das Formular aus &mdash; wir melden uns so schnell wie möglich zurück."
+        }
+    },
+    "footer": {
+        "contact": {
+            "heading": "Kontakt"
+        },
+        "socials": {
+            "heading": "Soziale Netzwerke"
+        },
+        "legal": {
+            "heading": "Rechtliches",
+            "charter": "Satzung",
+            "recommendations": "Empfehlungen",
+            "privacy-policy": "Datenschutzerklärung"
+        },
+        "maintenance": {
+            "heading": "Wartung",
+            "issues": "Probleme",
+            "source-code": "Quellcode"
+        },
+        "copyright": "(c) 2026 DACH e.V. Trier. Alle Rechte vorbehalten"
+    }
+}
