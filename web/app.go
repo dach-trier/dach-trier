@@ -32,6 +32,7 @@ func (app *App) Router() http.Handler {
 
 	router.Get("/", app.serveIndexPage)
 	router.Get("/projects", app.serveProjectPage)
+	router.Get("/events", app.serveEventPage)
 	router.NotFound(app.serveNotFoundPage)
 
 	return router
@@ -103,6 +104,24 @@ func (app *App) serveProjectPage(w http.ResponseWriter, r *http.Request) {
 				Description: template.HTML("Заснований у 2024 році, триваючий проєкт для підтримки молодих талантів"),
 			},
 		},
+	})
+}
+
+func (app *App) serveEventPage(w http.ResponseWriter, r *http.Request) {
+	var tmpl *template.Template
+
+	tmpl = template.New("")
+	tmpl = template.Must(tmpl.ParseFiles("web/templates/event-page.html"))
+	tmpl = template.Must(tmpl.ParseFiles("web/templates/header.html"))
+	tmpl = template.Must(tmpl.ParseFiles("web/templates/footer.html"))
+	tmpl = template.Must(tmpl.ParseGlob("web/templates/icons/*.html"))
+
+	type props struct {
+		Title string
+	}
+
+	tmpl.ExecuteTemplate(w, "page", props{
+		Title: "DACH e.V. Trier",
 	})
 }
 

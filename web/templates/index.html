@@ -140,7 +140,11 @@
                     Концерти, виставки, лекції, волoнтерськa діяльність, ...
                 </p>
 
-                <button class="button-blue-600 px-2 py-1 mt-6">
+                <button
+                    x-data
+                    @click="window.location.href='/events'"
+                    class="button-blue-600 px-2 py-1 mt-6"
+                >
                     Дізнатися більше
                 </button>
             </div>
